@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Contact Us</title>
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="{% static 'bootstrap.min.css' %}">
+</head>
+
+<body>
+
+<div>
+  <nav class="navbar navbar-expand-lg navbar-light" style="background-color:darkturquoise; height: 1in;">
+    <div class="container-fluid">
+      <h2 style="padding-right: 5%;">Dealerships</h2>
+
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item">
+            <a class="nav-link" style="font-size: larger;" href="/">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" style="font-size: larger;" href="/about/">About Us</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" style="font-size: larger;" href="/contact/">Contact Us</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MAIN CARD (same as About page) -->
+  <div class="card" style="width: 80%; margin: auto; margin-top:5%;">
+
+    <!-- HEADER BANNER -->
+    <div class="banner">
+      <h1>Contact Us</h1>
+      <p>Get in touch with Best Cars dealership. We're here to help you find your perfect vehicle.</p>
+    </div>
+
+    <!-- CONTACT INFO CARDS (same layout as About team cards) -->
+    <div style="display: flex; flex-direction: row; margin:auto">
+
+      <div class="card" style="width: 30%;">
+        <div class="card-body">
+          <p class="title">Address</p>
+          <p class="card-text">
+            Best Cars Dealership<br>
+            123 Auto Drive<br>
+            New York, NY 10001
+          </p>
+        </div>
+      </div>
+
+      <div class="card" style="width: 30%;">
+        <div class="card-body">
+          <p class="title">Phone</p>
+          <p class="card-text">
+            +1 (555) 123-4567<br>
+            +1 (555) 987-6543
+          </p>
+        </div>
+      </div>
+
+      <div class="card" style="width: 30%;">
+        <div class="card-body">
+          <p class="title">Email</p>
+          <p class="card-text">
+            support@bestcars.com<br>
+            sales@bestcars.com
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- CONTACT FORM (styled using your existing classes) -->
+    <div class="form_panel" style="background-color:white; color:black;">
+      <h3>Send Us a Message</h3>
+
+      <input type="text" placeholder="Your Name" style="margin:10px; padding:10px;">
+      <input type="email" placeholder="Your Email" style="margin:10px; padding:10px;">
+      <textarea rows="4" placeholder="Your Message" style="margin:10px; padding:10px;"></textarea>
+
+      <button style="margin:10px; padding:10px; background-color:darkturquoise; border:none;">
+        Submit
+      </button>
+    </div>
+
+  </div>
+
+</div>
+
+</body>
+</html>
