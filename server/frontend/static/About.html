@@ -3,69 +3,157 @@
     <link rel="stylesheet" href="/static/style.css">
     <link rel="stylesheet" href="/static/bootstrap.min.css">
 
+    <style>
+        .team-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin: 40px auto;
+            width: 90%;
+        }
+
+        .team-card {
+            width: 300px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .team-card img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        .team-card .card-body {
+            padding: 20px;
+        }
+
+        .title {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .banner {
+            text-align: center;
+            padding: 30px;
+        }
+    </style>
 </head>
+
+<body>
+
 <div>
-  <nav class="navbar navbar-expand-lg navbar-light" style="background-color:darkturquoise; height: 1in;">
-    <div class="container-fluid">
-      <h2 style="padding-right: 5%;">Dealerships</h2>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarText">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link" style="font-size: larger;" aria-current="page" href="/">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" style="font-size: larger;" href="/about">About Us</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" style="font-size: larger;" href="/contact">Contact Us</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-  
-    <div class="card" style="width: 80%;margin: auto; margin-top:5%;">
-      <div class="banner" name="about-header">
-          <h1>About Us</h1>
-          Welcome to Best Cars dealership, home to the best cars in North America. We deal in selling domestic and imported cars at reasonable prices.
-      </div>
-      <div style="display: flex;flex-direction: row; margin:auto">
-      <div class="card" style="width: 30%;">
-        <img class="card-img-top" src="/static/guy_1.png" alt="Card image">
-        <div class="card-body">
-          <p class="title">William Reno</p>
-          <p>CEO</p>
-          <p class="card-text">Some text that explains the person1 in about 2 short sentences</p>
-          <p>person1@example.com</p>
-        </div>
-      </div>
+    <nav class="navbar navbar-expand-lg navbar-light"
+         style="background-color: darkturquoise; height: 1in;">
+        <div class="container-fluid">
+            <h2 style="padding-right: 5%;">Dealerships</h2>
 
-      <div class="card" style="width: 30%;">
-        <img class="card-img-top" src="/static/guy_2.png" alt="Card image">
-        <div class="card-body">
-          <p class="title">Robert Mcmillan</p>
-          <p>Vice President</p>
-          <p class="card-text">Some text that explains the person2 in about 2 short sentences</p>
-          <p>person2@example.com</p>
-        </div>
-      </div>
+            <button class="navbar-toggler" type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarText"
+                    aria-controls="navbarText"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-      <div class="card" style="width: 30%;">
-        <img class="card-img-top" src="/static/guy_3.png" alt="Card image">
-        <div class="card-body">
-          <p class="title">Timothy Johnson</p>
-          <p>Showroom Manager</p>
-          <p class="card-text">Some text that explains the person3 in about 2 short sentences</p>
-          <p>person3@example.com</p>
+            <div class="collapse navbar-collapse" id="navbarText">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+                    <li class="nav-item">
+                        <a class="nav-link"
+                           style="font-size: larger;"
+                           aria-current="page"
+                           href="/">Home</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link active"
+                           style="font-size: larger;"
+                           href="/about">About Us</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link"
+                           style="font-size: larger;"
+                           href="/contact">Contact Us</a>
+                    </li>
+
+                </ul>
+            </div>
         </div>
-      </div>
+    </nav>
+
+    <div class="card"
+         style="width: 85%; margin: auto; margin-top: 5%; padding: 20px;">
+
+        <div class="banner" name="about-header">
+            <h1>About Us</h1>
+
+            <p>
+                Welcome to Best Cars dealership, home to the best cars in
+                North America. We deal in selling domestic and imported
+                cars at reasonable prices.
+            </p>
+        </div>
+
+        <div class="team-container">
+
+            <div class="card team-card">
+                <img src="/static/guy_1.png" alt="William Reno">
+
+                <div class="card-body">
+                    <p class="title">William Reno</p>
+                    <p>CEO</p>
+
+                    <p class="card-text">
+                        Leads the company strategy and ensures exceptional
+                        customer experience across all dealerships.
+                    </p>
+
+                    <p>person1@example.com</p>
+                </div>
+            </div>
+
+            <div class="card team-card">
+                <img src="/static/guy_2.png" alt="Robert Mcmillan">
+
+                <div class="card-body">
+                    <p class="title">Robert Mcmillan</p>
+                    <p>Vice President</p>
+
+                    <p class="card-text">
+                        Oversees business operations and dealership expansion
+                        initiatives across the region.
+                    </p>
+
+                    <p>person2@example.com</p>
+                </div>
+            </div>
+
+            <div class="card team-card">
+                <img src="/static/guy_3.png" alt="Timothy Johnson">
+
+                <div class="card-body">
+                    <p class="title">Timothy Johnson</p>
+                    <p>Showroom Manager</p>
+
+                    <p class="card-text">
+                        Manages showroom operations and helps customers find
+                        the perfect vehicle.
+                    </p>
+
+                    <p>person3@example.com</p>
+                </div>
+            </div>
+
+        </div>
     </div>
-    </div>
-    </div>
-    
 </div>
 
+</body>
 </html>
