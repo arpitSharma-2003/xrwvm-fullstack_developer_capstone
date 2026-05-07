@@ -27,7 +27,10 @@ def login_user(request):
     if user is not None:
         # If user is valid, call login method to login current user
         login(request, user)
-        response_data = {"userName": username, "status": "Authenticated"}
+        response_data = {
+            "userName": username,
+            "status": "Authenticated",
+        }
 
     return JsonResponse(response_data)
 
@@ -49,6 +52,7 @@ def registration(request):
     email = data["email"]
 
     username_exist = False
+
     try:
         # Check if user already exists
         User.objects.get(username=username)
@@ -67,22 +71,41 @@ def registration(request):
             password=password,
             email=email,
         )
+
         # Login the user
         login(request, user)
-        return JsonResponse({"userName": username, "status": "Authenticated"})
 
-    return JsonResponse({"userName": username, "error": "Already Registered"})
+        return JsonResponse(
+            {
+                "userName": username,
+                "status": "Authenticated",
+            }
+        )
+
+    return JsonResponse(
+        {
+            "userName": username,
+            "error": "Already Registered",
+        }
+    )
 
 
 def get_dealerships(request, state="All"):
-    # Render list of dealerships: all by default, particular state if state is passed
+    # Render list of dealerships:
+    # all by default, particular state if state is passed
     if state == "All":
         endpoint = "/fetchDealers"
     else:
         endpoint = "/fetchDealers/" + state
 
     dealerships = get_request(endpoint)
-    return JsonResponse({"status": 200, "dealers": dealerships})
+
+    return JsonResponse(
+        {
+            "status": 200,
+            "dealers": dealerships,
+        }
+    )
 
 
 def get_dealer_reviews(request, dealer_id):
@@ -92,41 +115,97 @@ def get_dealer_reviews(request, dealer_id):
         reviews = get_request(endpoint)
 
         for review_detail in reviews:
-            sentiment_response = analyze_review_sentiments(review_detail["review"])
-            review_detail["sentiment"] = sentiment_response["sentiment"]
+            sentiment_response = analyze_review_sentiments(
+                review_detail["review"]
+            )
 
-        return JsonResponse({"status": 200, "reviews": reviews})
+            review_detail["sentiment"] = (
+                sentiment_response["sentiment"]
+            )
 
-    return JsonResponse({"status": 400, "message": "Bad Request"})
+        return JsonResponse(
+            {
+                "status": 200,
+                "reviews": reviews,
+            }
+        )
+
+    return JsonResponse(
+        {
+            "status": 400,
+            "message": "Bad Request",
+        }
+    )
 
 
 def get_dealer_details(request, dealer_id):
     if dealer_id:
         endpoint = "/fetchDealer/" + str(dealer_id)
         dealership = get_request(endpoint)
-        return JsonResponse({"status": 200, "dealer": dealership})
 
-    return JsonResponse({"status": 400, "message": "Bad Request"})
+        return JsonResponse(
+            {
+                "status": 200,
+                "dealer": dealership,
+            }
+        )
+
+    return JsonResponse(
+        {
+            "status": 400,
+            "message": "Bad Request",
+        }
+    )
 
 
 def add_review(request):
     # Create an add_review view to submit a review
     if not request.user.is_anonymous:
         data = json.loads(request.body)
+
         try:
             post_review(data)
-            return JsonResponse({"status": 200})
-        except Exception:
-            return JsonResponse({"status": 401, "message": "Error in posting review"})
 
-    return JsonResponse({"status": 403, "message": "Unauthorized"})
+            return JsonResponse(
+                {
+                    "status": 200,
+                }
+            )
+
+        except Exception:
+            return JsonResponse(
+                {
+                    "status": 401,
+                    "message": "Error in posting review",
+                }
+            )
+
+    return JsonResponse(
+        {
+            "status": 403,
+            "message": "Unauthorized",
+        }
+    )
 
 
 def get_cars(request):
     count = CarMake.objects.count()
+
     if count == 0:
         initiate()
 
     car_models = CarModel.objects.select_related("car_make")
-    cars = [{"CarModel": cm.name, "CarMake": cm.car_make.name} for cm in car_models]
-    return JsonResponse({"CarModels": cars})
+
+    cars = [
+        {
+            "CarModel": cm.name,
+            "CarMake": cm.car_make.name,
+        }
+        for cm in car_models
+    ]
+
+    return JsonResponse(
+        {
+            "CarModels": cars,
+        }
+    )
