@@ -29,7 +29,10 @@ def login_user(request):
     response_data = {"userName": username}
     if user is not None:
         login(request, user)
-        response_data = {"userName": username, "status": "Authenticated"}
+        response_data = {
+            "userName": username,
+            "status": "Authenticated",
+        }
 
     return JsonResponse(response_data)
 
@@ -50,7 +53,12 @@ def registration(request):
 
     try:
         User.objects.get(username=username)
-        return JsonResponse({"userName": username, "error": "Already Registered"})
+        return JsonResponse(
+            {
+                "userName": username,
+                "error": "Already Registered",
+            }
+        )
     except User.DoesNotExist:
         logger.debug("%s is new user", username)
 
@@ -107,7 +115,12 @@ def add_review(request):
         post_review(data)
         return JsonResponse({"status": 200})
     except Exception:
-        return JsonResponse({"status": 401, "message": "Error in posting review"})
+        return JsonResponse(
+            {
+                "status": 401,
+                "message": "Error in posting review",
+            }
+        )
 
 
 def get_cars(request):
@@ -115,7 +128,10 @@ def get_cars(request):
         initiate()
 
     car_models = CarModel.objects.select_related("car_make")
-    cars = [{"CarModel": cm.name, "CarMake": cm.car_make.name} for cm in car_models]
+    cars = [
+        {"CarModel": cm.name, "CarMake": cm.car_make.name}
+        for cm in car_models
+    ]
     return JsonResponse({"CarModels": cars})
 
 
@@ -140,4 +156,4 @@ def get_inventory(request, dealer_id):
         endpoint = f"/cars/{dealer_id_str}"
 
     cars = searchcars_request(endpoint)
-    return JsonResponse({"status": 200, "cars": cars})
+    return JsonResponse({"status": 200, "cars": cars})s": cars})
