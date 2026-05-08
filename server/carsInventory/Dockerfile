@@ -2,13 +2,15 @@ FROM node:18.12.1-bullseye-slim
 
 RUN npm install -g npm@9.1.3
 
-WORKDIR /
+WORKDIR /app
 
-COPY package.json /package.json
-COPY app.js /app.js
-COPY inventory.js /inventory.js
-COPY data/car_records.json /car_records.json
+# 1) Copy package files first (better caching)
+COPY package*.json ./
 
+# 2) Install dependencies (THIS WAS MISSING)
+RUN npm ci || npm install
+
+# 3) Copy the rest of the app
 COPY . .
 
 EXPOSE 3050
