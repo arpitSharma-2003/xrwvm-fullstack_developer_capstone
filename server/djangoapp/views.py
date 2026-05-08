@@ -137,23 +137,49 @@ def get_cars(request):
 
 def get_inventory(request, dealer_id):
     if not dealer_id:
-        return JsonResponse({"status": 400, "message": "Bad Request"})
+        return JsonResponse(
+            {
+                "status": 400,
+                "message": "Bad Request",
+            }
+        )
 
     data = request.GET
     dealer_id_str = str(dealer_id)
 
     if "year" in data:
-        endpoint = f"/carsbyyear/{dealer_id_str}/{data['year']}"
+        endpoint = (
+            f"/carsbyyear/{dealer_id_str}/{data['year']}"
+        )
+
     elif "make" in data:
-        endpoint = f"/carsbymake/{dealer_id_str}/{data['make']}"
+        endpoint = (
+            f"/carsbymake/{dealer_id_str}/{data['make']}"
+        )
+
     elif "model" in data:
-        endpoint = f"/carsbymodel/{dealer_id_str}/{data['model']}"
+        endpoint = (
+            f"/carsbymodel/{dealer_id_str}/{data['model']}"
+        )
+
     elif "mileage" in data:
-        endpoint = f"/carsbymaxmileage/{dealer_id_str}/{data['mileage']}"
+        endpoint = (
+            f"/carsbymaxmileage/{dealer_id_str}/{data['mileage']}"
+        )
+
     elif "price" in data:
-        endpoint = f"/carsbyprice/{dealer_id_str}/{data['price']}"
+        endpoint = (
+            f"/carsbyprice/{dealer_id_str}/{data['price']}"
+        )
+
     else:
         endpoint = f"/cars/{dealer_id_str}"
 
     cars = searchcars_request(endpoint)
-    return JsonResponse({"status": 200, "cars": cars})s": cars})
+
+    return JsonResponse(
+        {
+            "status": 200,
+            "cars": cars,
+        }
+    )
